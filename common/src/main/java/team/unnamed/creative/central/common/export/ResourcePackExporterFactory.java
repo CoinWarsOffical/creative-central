@@ -58,18 +58,12 @@ public final class ResourcePackExporterFactory {
                 return new MCPacksHttpExporter();
             case "localhost":
                 return new LocalHostExporter(server, logger);
-            case "file":
-                return new FileExporter(new File(root, "output.zip"), logger);
-            case "folder":
-                return new FolderExporter(new File(root, "output"), logger);
             default:
                 throw new IllegalArgumentException(
                     "Unknown exporter method: '" + key + "'. Possible values:\n"
                     + "    - 'mcpacks':                 (hosted) Exports the resource-pack to MCPacks\n"
                     + "    - 'localhost':               (hosted) Exports the resource-pack to a local server\n"
                     + "    - 'polymath <url> <secret>': (hosted) Exports the reosurce-pack to a Polymath server\n"
-                    + "    - 'file':                    (non-hosted) Exports the resource-pack to a file\n"
-                    + "    - 'folder':                  (non-hosted) Exports the resource-pack to a folder\n"
                 );
         }
     }

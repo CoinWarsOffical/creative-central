@@ -46,6 +46,7 @@ import team.unnamed.creative.central.bukkit.util.PluginResources;
 import team.unnamed.creative.central.common.config.Configuration;
 import team.unnamed.creative.central.common.config.ExportConfiguration;
 import team.unnamed.creative.central.common.config.YamlConfigurationLoader;
+import team.unnamed.creative.central.common.export.FolderExporter;
 import team.unnamed.creative.central.common.util.Components;
 import team.unnamed.creative.central.common.event.EventBusImpl;
 import team.unnamed.creative.central.common.event.EventExceptionHandler;
@@ -311,11 +312,16 @@ public final class CreativeCentralPlugin extends JavaPlugin implements CreativeC
             getLogger().info("Exporting resource pack...");
             String exportType = config.export().type();
             ResourcePackExporter exporter = ResourcePackExporterFactory.create(exportType, getDataFolder(), resourcePackServer, getLogger());
+
             try {
                 location = exporter.export(resourcePack);
             } catch (IOException e) {
                 getLogger().log(Level.SEVERE, "Failed to export resource pack", e);
             }
+
+            //GoodestEnglish start - Output the resource pack to somewhere we can view after the resource pack is uploaded to external server
+            new FolderExporter(new File(getDataFolder(), "output"), getLogger()).export(resourcePack);
+            //GoodestEnglish end
         }
 
         if (location != null) {

@@ -46,7 +46,9 @@ send:
         # (Optional) Message shown to players when they join for the first time
         # They are asked to use the server resource pack and this message is
         # shown in the screen (1.17 and above, versions before 1.17 don't have this)
-        prompt: '<#ff8df8>Creative Central <dark_gray>| <gray>Please accept the server resource pack to enjoy the full server experience'
+        prompt: |-
+            <aqua>麥塊競技場
+            <green>請接受使用伺服器資源包以享受完整的伺服器體驗
 
     # Determines how much time to wait before sending the resource pack
     # to the player. Set to 0 or less to send immediately.
@@ -69,41 +71,41 @@ feedback:
     # in the resource pack download screen
     accepted:
         - title:
-              title: '<gray>Loading...'
-              subtitle: '<gray>Downloading the resource pack...'
+              title: '<yellow>加載中...'
+              subtitle: '<gray>正在下載資源包...'
               fade-in: 0
               stay: 90
               fade-out: 0
-        - message: '<#ff8df8>Creative Central <dark_gray>| <green>Info <dark_gray>| <gray>Downloading the resource pack...'
+        - message: '<aqua>資源包管理 <gray>| <yellow>正在下載資源包...'
 
     # Actions to perform when the player successfully finishes downloading the resource pack
     # These actions will be performed after the (resource pack download) loading screen on the
     # client disappears
     success:
         -   title:
-                title: '<#ff8df8><bold>Welcome!'
-                subtitle: '<gray>Enjoy your stay in this creative server!'
+                title: '<green>資源包已正確下載!'
+                subtitle: '<gray>歡迎來到麥塊競技場!'
                 fade-in: 10
                 stay: 50
                 fade-out: 10
-        -   message: '<#ff8df8>Creative Central <dark_gray>| <green>Info <dark_gray>| <gray>The resource pack has been downloaded correctly...'
+        -   message: '<aqua>資源包管理 <gray>| <green>資源包已正確下載!'
     # Actions to perform when the player declines the resource pack
     declined:
-        - kick: You must accept the resource pack in order to play in this server.
+        - kick: "你必須接受資源包才能在此伺服器遊玩。"
     # Actions to perform when the player fails to download the resource pack
     failed:
-        - kick: Failed to download resource-pack, something failed. Please contact an administrator.
+        - kick: "無法下載資源包，發生錯誤。請聯繫管理員。(FAILED)"
     # Actions to perform when the player successfully downloads (but still not tries to apply) the resource-pack
     downloaded: []
     # Actions to perform when the player's client detects an invalid URL (our fault!)
     invalid-url:
-        - kick: Failed to apply resource-pack, the resource-pack URL is invalid. Please contact an administrator.
+        - kick: "無法下載資源包，發生錯誤。請聯繫管理員。(INVALID_URL)"
     # Actions to perform when the player's client fails to apply the resource-pack
     failed-reload:
-        - kick: Failed to apply resource-pack, failed to reload your client's resource-packs.
+        - kick: "無法下載資源包，發生錯誤。請聯繫管理員。(FAILED_RELOAD)"
     # Actions to perform when the player's client fails to apply the resource-pack
     discarded:
-        - kick: Failed to apply resource-pack, it has been discarded by your client.
+        - kick: "無法應用資源包，發生錯誤。請聯繫管理員 (DISCARDED)"
 
 
 
@@ -127,6 +129,7 @@ export:
     # |--> 'polymath <url> <secret>' (hosted)
     # |     Uploads the generated resource pack to a Polymath server. (Oraxen's
     # |     resource pack server)
+
     #
     # | Note: The plugin will not prompt players to download the resource
     # |       pack if the export method is not hosted, this is because
@@ -165,31 +168,30 @@ command:
     # the '/creative' command, and they don't have permission. For more
     # customization, there are messages for each subcommand
     no-permission:
-        help: "<red>You don't have permission to use this command."
-        reload: "<red>You don't have permission to use this command."
+        help: "<red>您沒有權限使用此命令。"
+        reload: "<red>您沒有權限使用此命令。"
         apply:
-            self: "<red>You don't have permission to use this command."
-            others: "<red>You don't have permission to send the resource-pack to other players. You can only use '/central apply'"
+            self: "<red>您沒有權限使用此命令。"
+            others: "<red>您沒有權限發送資源包給其他玩家。"
     usage:
-        unknown: "<red>Unknown subcommand. Type '/central help' for help."
-        help: "<red>Correct usage: /central [help|?]"
-        reload: "<red>Correct usage: /central reload"
+        unknown: "<red>未知的子命令。輸入 '/central help' 獲取幫助。"
+        help: "<red>正確用法: /central [help|?]"
+        reload: "<red>正確用法: /central reload"
         apply:
-            self: "<red>Correct usage: /central apply"
-            others: "<red>Correct usage: /central apply [target]"
+            self: "<red>正確用法: /central apply"
+            others: "<red>正確用法: /central apply [target]"
     apply:
-        no-resource-pack: "<red>It seems like the resource-pack is not ready. This may be because the resource-pack export method is not **hosted** or the plugin is not fully enabled yet"
-        no-player: "<red>You must be a player to use this command"
-        player-not-found: "<red>No player found with that name"
-        no-players: "<red>There aren't any players online"
+        no-resource-pack: "<red>似乎資源包尚未準備好。這可能是因為資源包的匯出方式不是**託管**的，或插件尚未完全啟用"
+        no-player: "<red>您必須是一名玩家才能使用此命令"
+        player-not-found: "<red>找不到該名稱的玩家"
+        no-players: "<red>目前沒有任何玩家在線"
     feedback:
-        reload: "<green>Configuration reloaded successfully."
-        apply: "<green>Resource pack sent!"
+        reload: "<green>Config 已成功重新加載。"
+        apply: "<green>資源包已發送！"
     help: |-
-        /central help - Shows this help message
-        /central apply [target] - Sends the resource pack to the target player (or yourself if no target is specified)
-        /central reload - Reloads the plugin configuration, regenerates, exports and sends the resource pack
-
+        <aqua>/central help <gray>- <white>顯示此幫助訊息
+        <aqua>/central apply [target] <gray>- <white>發送資源包給指定玩家（如果未指定則發送給自己）
+        <aqua>/central reload <gray>- <white>重新加載插件配置，重新生成、匯出並發送資源包
 
 
 ##

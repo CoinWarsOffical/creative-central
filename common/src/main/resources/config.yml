@@ -47,7 +47,7 @@ send:
         # They are asked to use the server resource pack and this message is
         # shown in the screen (1.17 and above, versions before 1.17 don't have this)
         prompt: |-
-            <aqua>麥塊競技場
+            <aqua>金幣爭霸戰
             <green>請接受使用伺服器資源包以享受完整的伺服器體驗
 
     # Determines how much time to wait before sending the resource pack
@@ -84,7 +84,7 @@ feedback:
     success:
         -   title:
                 title: '<green>資源包已正確下載!'
-                subtitle: '<gray>歡迎來到麥塊競技場!'
+                subtitle: '<gray>歡迎來到金幣爭霸戰!'
                 fade-in: 10
                 stay: 50
                 fade-out: 10
